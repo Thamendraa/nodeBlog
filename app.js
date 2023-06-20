@@ -4,6 +4,9 @@ const port = 4000;
 const ejs =require("ejs");
 const path =require("path");
 const controller = require("./Controller/blogController")
+const{storage,multer}= require('./Services/molterConfig')
+const upload = multer({storage:storage})
+
 //linking 
 const db = require("./Model/index");
 db.sequelize.sync({ force: false }); 
@@ -13,8 +16,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //calling from the controller
+
 app.get("/", controller.blog);
 app.get("/createBlog",controller.renderCreateBlog)
+
+app.post("/createBlog",upload.single('image'), controller.createBlog);//middleware
+
+app.use(express.static(path.join(__dirname,"uploads")));
+app.get("/blog", controller.blog);
 
 
 //setting the port
