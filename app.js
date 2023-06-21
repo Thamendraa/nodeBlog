@@ -23,9 +23,14 @@ app.get("/createBlog",controller.renderCreateBlog)
 app.post("/createBlog",upload.single('image'), controller.createBlog);//middleware
 
 app.use(express.static(path.join(__dirname,"uploads")));
+
 app.get("/blog", controller.blog);
 
+//seemore
+app.get('/single/:id',controller.single);
 
+//delete
+app.get("/delete/:id",controller.delete);
 //setting the port
 app.listen(port, () => {
     console.log(" Hello, Node server started at port 4000");

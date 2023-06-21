@@ -30,3 +30,29 @@ exports.createBlog = async(req,res) =>{
     res.redirect('/blog')
     
 };
+
+exports.single = async(req,res) =>{
+    console.log(req.params.id);
+    
+    // const id = req.params.id;
+    const blog = await db.blog.findAll({
+        where:{
+            id: req.params.id
+        }
+    });
+    //console.log(blog[0]);
+
+    res.render("single",{blog:blog[0]});
+};
+
+exports.delete = async(req,res) =>{
+    console.log(req.params.id);
+    const blog = await db.blog.destroy({
+        where: {
+            id:req.params.id
+        }
+    });
+
+    res.redirect("/");
+
+};
