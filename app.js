@@ -31,6 +31,9 @@ app.get('/single/:id',controller.single);
 
 //delete
 app.get("/delete/:id",controller.delete);
+
+//edit
+app.get("/edit/:id", controller.edit);
 //setting the port
 app.listen(port, () => {
     console.log(" Hello, Node server started at port 4000");
