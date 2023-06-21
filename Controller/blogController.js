@@ -14,6 +14,7 @@ exports.renderCreateBlog = async(req,res)=>{
     res.render("createBlog");
 ;}
 
+//ADD TO BLOG
 exports.createBlog = async(req,res) =>{
     console.log(req.file)
     //destructuring objects
@@ -31,6 +32,7 @@ exports.createBlog = async(req,res) =>{
     
 };
 
+// VIEW SINGLE PAGE
 exports.single = async(req,res) =>{
     console.log(req.params.id);
     
@@ -45,6 +47,7 @@ exports.single = async(req,res) =>{
     res.render("single",{blog:blog[0]});
 };
 
+// DELETE
 exports.delete = async(req,res) =>{
     console.log(req.params.id);
     const blog = await db.blog.destroy({
