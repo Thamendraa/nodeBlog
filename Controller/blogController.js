@@ -92,9 +92,13 @@ exports.edit = async(req,res) => {
 //     res.redirect('/')
 // }
 exports.update=async (req,res)=>{
-    console.log(req.body.title)
-    console.log(req.body.imagepath)
-    const image="http://localhost:4000/"+req.file.filename;
+
+    let image = req.body.image; // Assuming you have a hidden input field with the current image path in your HTML form
+    if (req.file) {
+        image = "http://localhost:4000/" + req.file.filename;
+    }
+
+    // const image="http://localhost:4000/"+req.file.filename;
     const blog=await db.blog.update({
       title:req.body.title,
       description:req.body.description,
@@ -106,6 +110,6 @@ exports.update=async (req,res)=>{
       },
     });
 
-    console.log("Updated successfully")
+    console.log("Updated successfully"),
     res.redirect("/")
-  }
+  };
