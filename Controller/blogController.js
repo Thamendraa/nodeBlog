@@ -76,12 +76,12 @@ exports.edit = async(req,res) => {
 
 exports.update=async (req,res)=>{
 
-    let image = req.body.image; // Assuming you have a hidden input field with the current image path in your HTML form
-    if (req.file) {
+    const image = req.body.image; 
+    if (req.file) {//
         image = "http://localhost:4000/" + req.file.filename;
     }
-
-    // const image="http://localhost:4000/"+req.file.filename;
+    //checks if req.file exists, which indicates that a file was uploaded. If a file was uploaded, 
+    //it assigns the image URL to the image variable by concatenating the base URL "http://localhost:4000/" with the filename property of req.file.
     const blog=await db.blog.update({
       title:req.body.title,
       description:req.body.description,
