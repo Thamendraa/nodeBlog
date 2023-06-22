@@ -73,24 +73,7 @@ exports.edit = async(req,res) => {
 };
 
 //update
-// exports.update = async(req,res) =>{
-//     console.log(req.body.title)
-//     console.log(req.body.imagepath)
 
-//     const {title,description,image,}=req.body 
-//     //adding in database tabel
-//     const blog=await db.blog.update({
-//         title,
-//         description, 
-//         image:"http://localhost:4000/"+req.file.filename,
-//         where:{
-//             id: req.params.id,
-//         }
-//     })
-//     console.log("sucess")
-//     // redirecting to another page
-//     res.redirect('/')
-// }
 exports.update=async (req,res)=>{
 
     let image = req.body.image; // Assuming you have a hidden input field with the current image path in your HTML form
