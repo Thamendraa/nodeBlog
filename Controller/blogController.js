@@ -80,6 +80,7 @@ exports.update=async (req,res)=>{
     if (req.file) {//
         image = "http://localhost:4000/" + req.file.filename;
     }
+    //here
     //checks if req.file exists, which indicates that a file was uploaded. If a file was uploaded, 
     //it assigns the image URL to the image variable by concatenating the base URL "http://localhost:4000/" with the filename property of req.file.
     const blog=await db.blog.update({
