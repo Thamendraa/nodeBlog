@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web Page</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 200px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .image-preview {
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/update/<%-blog.id%>" method="POST" enctype="multipart/form-data">
+            
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required value="<%-blog.title%>"><br><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required value="<%=blog.description%>"><br><br>
+
+            <label for="image">Image:</label>
+            <div class="image-preview">
+                <img src="<%-blog.image%>" alt="Image Preview">
+            </div>
+            <input type="file" id="image" name="image" required value="<%-blog.image%>"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

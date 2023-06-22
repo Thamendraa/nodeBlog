@@ -5,7 +5,7 @@ const Blog = db.blog;
 exports.blog = async(req,res) => {
     //
     const blog = await db.blog.findAll();
-    console.log(blog);
+    console.log(blog);  
     //
     res.render("blog",{blog});
 };
@@ -59,3 +59,53 @@ exports.delete = async(req,res) =>{
     res.redirect("/");
 
 };
+
+//edit
+exports.edit = async(req,res) => {
+     const id = req.params.id;
+    const blog = await db.blog.findAll({
+        where:{
+            id: req.params.id
+        }
+    });
+    console.log(blog[0].image);
+    res.render("editBlog",{blog:blog[0]});
+};
+
+//update
+// exports.update = async(req,res) =>{
+//     console.log(req.body.title)
+//     console.log(req.body.imagepath)
+
+//     const {title,description,image,}=req.body 
+//     //adding in database tabel
+//     const blog=await db.blog.update({
+//         title,
+//         description, 
+//         image:"http://localhost:4000/"+req.file.filename,
+//         where:{
+//             id: req.params.id,
+//         }
+//     })
+//     console.log("sucess")
+//     // redirecting to another page
+//     res.redirect('/')
+// }
+exports.update=async (req,res)=>{
+    console.log(req.body.title)
+    console.log(req.body.imagepath)
+    const image="http://localhost:4000/"+req.file.filename;
+    const blog=await db.blog.update({
+      title:req.body.title,
+      description:req.body.description,
+      image:image
+    },
+    {
+      where:{
+        id:req.params.id,
+      },
+    });
+
+    console.log("Updated successfully")
+    res.redirect("/")
+  }

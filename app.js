@@ -34,6 +34,9 @@ app.get("/delete/:id",controller.delete);
 
 //edit
 app.get("/edit/:id", controller.edit);
+
+//update
+app.post("/update/:id",upload.single('image'),controller.update);
 //setting the port
 app.listen(port, () => {
     console.log(" Hello, Node server started at port 4000");
